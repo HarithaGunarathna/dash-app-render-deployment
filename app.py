@@ -9,19 +9,19 @@ from dash import dcc, html
 from dash.dependencies import Input, Output, State
 
  # Load dataset
-data = pd.read_csv('data/winequality-red.csv')
+winequality_df = pd.read_csv('data/winequality-red.csv')
 # Check for missing values
-data.isna().sum()
+winequality_df.isna().sum()
 # Remove duplicate data
-data.drop_duplicates(keep='first')
+winequality_df.drop_duplicates(keep='first')
 # Calculate the correlation matrix
-corr_matrix = data.corr()
+corr_matrix = winequality_df.corr()
 # Label quality into Good (1) and Bad (0)
-data['quality'] = data['quality'].apply(lambda x: 1 if x >= 6.0 else 0)
+winequality_df['quality'] = winequality_df['quality'].apply(lambda x: 1 if x >= 6.0 else 0)
     # Drop the target variable
-X = data.drop('quality', axis=1)
+X = winequality_df.drop('quality', axis=1)
 # Set the target variable as the label
-y = data['quality']
+y = winequality_df['quality']
 
 
 # Split the dat a into training and testing sets (80% training, 20% testing)
